@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday __NAME__!</title>
+  <meta name="description" content="A birthday surprise for __NAME__">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <div class="balloons" aria-hidden="true">
+    <span class="balloon b1"></span>
+    <span class="balloon b2"></span>
+    <span class="balloon b3"></span>
+    <span class="balloon b4"></span>
+    <span class="balloon b5"></span>
+    <span class="balloon b6"></span>
+  </div>
+
+  <main>
+    <section class="hero">
+      <p class="kicker">&#127881; It's your special day &#127881;</p>
+      <h1>
+        <span class="line">Happy Birthday</span>
+        <span class="name" id="name">__NAME__</span>
+      </h1>
+      <div class="cake" aria-hidden="true">&#127874;</div>
+      <button id="wish" class="btn" type="button">Make a wish &#10024;</button>
+      <p id="wish-msg" class="wish-msg" role="status"></p>
+    </section>
+
+    <section class="cards" aria-label="Birthday wishes">
+      <article class="card c1">
+        <span class="emoji" aria-hidden="true">&#128156;</span>
+        <h2>Joy</h2>
+        <p>May every day of this new year bring you a reason to smile.</p>
+      </article>
+      <article class="card c2">
+        <span class="emoji" aria-hidden="true">&#127752;</span>
+        <h2>Colour</h2>
+        <p>Here's to a year painted in the brightest colours you can imagine.</p>
+      </article>
+      <article class="card c3">
+        <span class="emoji" aria-hidden="true">&#128640;</span>
+        <h2>Adventure</h2>
+        <p>May this year take you somewhere wonderful and a little unexpected.</p>
+      </article>
+      <article class="card c4">
+        <span class="emoji" aria-hidden="true">&#127856;</span>
+        <h2>Cake</h2>
+        <p>Because the biggest slice always belongs to the birthday star.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with &#10084;&#65039; for <strong id="footer-name">__NAME__</strong></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

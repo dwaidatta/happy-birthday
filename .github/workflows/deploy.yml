@@ -1,0 +1,55 @@
+name: Deploy birthday site
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Name of the birthday person"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build site with the name
+        env:
+          BIRTHDAY_NAME: ${{ inputs.name }}
+        run: |
+          mkdir _site
+          cp index.html style.css script.js _site/
+          python3 - <<'EOF'
+          import html, os, pathlib
+          name = html.escape(os.environ["BIRTHDAY_NAME"].strip(), quote=True)
+          if not name:
+              raise SystemExit("Name must not be empty")
+          page = pathlib.Path("_site/index.html")
+          page.write_text(page.read_text(encoding="utf-8").replace("__NAME__", name), encoding="utf-8")
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
